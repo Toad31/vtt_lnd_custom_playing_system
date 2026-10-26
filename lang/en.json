@@ -8,5 +8,6 @@
   "LND.Success": "Success", "LND.Failure": "Failure", "LND.HealFormula": "Healing dice",
   "LND.MoveMsg": "moves.", "LND.Spells": "Spells", "LND.Skills": "Skills",
   "LND.Objects": "Objects", "LND.Stat": "Stat", "LND.Kind": "Type", "LND.Quantity": "Quantity",
-  "LND.Portrait": "Portrait", "LND.Token": "Token", "LND.SaveError": "Unable to save changes."
+  "LND.Portrait": "Portrait", "LND.Token": "Token", "LND.ItemImage": "Object image",
+  "LND.SaveError": "Unable to save changes."
 }

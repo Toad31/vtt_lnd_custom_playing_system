@@ -1,5 +1,7 @@
 .lnd-sheet .stats { display: flex; gap: 8px; }
 .lnd-sheet .stat { display: flex; flex-direction: column; align-items: center; }
+.lnd-sheet .health-values { display: inline-flex; align-items: center; white-space: nowrap; }
+.lnd-sheet .health-values input { width: 4em; }
 .lnd-sheet .actions button { width: auto; }
 .lnd-sheet .images { display: flex; gap: 12px; margin-bottom: 8px; }
 .lnd-sheet .images figure { margin: 0; text-align: center; }

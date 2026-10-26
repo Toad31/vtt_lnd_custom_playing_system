@@ -211,6 +211,10 @@ export class CustomItemSheet extends foundry.applications.api.HandlebarsApplicat
     await super._onRender(context, options);
     if (!this.isEditable) return;
     bindFormPersistence(this.item, this.element);
+    this.element.querySelectorAll(".item-images img[data-edit]").forEach(image => image.addEventListener("click", event => {
+      event.preventDefault();
+      editImage(this.item, event.currentTarget);
+    }));
   }
 }
 

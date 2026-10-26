@@ -8,5 +8,6 @@
   "LND.Success": "Réussite", "LND.Failure": "Échec", "LND.HealFormula": "Dés de soin",
   "LND.MoveMsg": "se déplace.", "LND.Spells": "Sorts", "LND.Skills": "Compétences",
   "LND.Objects": "Objets", "LND.Stat": "Statistique", "LND.Kind": "Type", "LND.Quantity": "Quantité",
-  "LND.Portrait": "Portrait", "LND.Token": "Token", "LND.SaveError": "Impossible d'enregistrer les modifications."
+  "LND.Portrait": "Portrait", "LND.Token": "Token", "LND.ItemImage": "Image de l'objet",
+  "LND.SaveError": "Impossible d'enregistrer les modifications."
 }

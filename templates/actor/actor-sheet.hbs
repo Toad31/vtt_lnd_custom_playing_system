@@ -12,8 +12,10 @@
     </div>
     <input type="text" name="name" value="{{actor.name}}" placeholder="Nom">
     <label>{{localize "LND.Health"}}
-      <input type="number" name="system.sante.value" value="{{system.sante.value}}"> /
-      <input type="number" name="system.sante.max" value="{{system.sante.max}}">
+      <span class="health-values">
+        <input type="number" name="system.sante.value" value="{{system.sante.value}}"> /
+        <input type="number" name="system.sante.max" value="{{system.sante.max}}">
+      </span>
     </label>
     <strong>{{localize "LND.Armor"}}: {{system.armure}}</strong>
   </header>
