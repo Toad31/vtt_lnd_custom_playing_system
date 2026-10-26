@@ -7,5 +7,6 @@
   "LND.Damage": "Dégâts", "LND.Miss": "Attaque ratée", "LND.Difficulty": "Difficulté",
   "LND.Success": "Réussite", "LND.Failure": "Échec", "LND.HealFormula": "Dés de soin",
   "LND.MoveMsg": "se déplace.", "LND.Spells": "Sorts", "LND.Skills": "Compétences",
-  "LND.Objects": "Objets", "LND.Stat": "Statistique", "LND.Kind": "Type", "LND.Quantity": "Quantité"
+  "LND.Objects": "Objets", "LND.Stat": "Statistique", "LND.Kind": "Type", "LND.Quantity": "Quantité",
+  "LND.Portrait": "Portrait", "LND.Token": "Token"
 }

@@ -1,0 +1,12 @@
+{
+  "LND.Health": "Health", "LND.dexterite": "Dexterity", "LND.force": "Strength",
+  "LND.intelligence": "Intelligence", "LND.charisme": "Charisma", "LND.Armor": "Armor",
+  "LND.High": "High", "LND.Medium": "Medium", "LND.Low": "Low",
+  "LND.Attack": "Attack", "LND.Move": "Move", "LND.Heal": "Heal",
+  "LND.Interact": "Interact", "LND.Other": "Other", "LND.Describe": "Desired action",
+  "LND.Damage": "Damage", "LND.Miss": "Missed attack", "LND.Difficulty": "Difficulty",
+  "LND.Success": "Success", "LND.Failure": "Failure", "LND.HealFormula": "Healing dice",
+  "LND.MoveMsg": "moves.", "LND.Spells": "Spells", "LND.Skills": "Skills",
+  "LND.Objects": "Objects", "LND.Stat": "Stat", "LND.Kind": "Type", "LND.Quantity": "Quantity",
+  "LND.Portrait": "Portrait", "LND.Token": "Token"
+}

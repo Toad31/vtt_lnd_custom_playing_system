@@ -1,5 +1,15 @@
 <form class="lnd-sheet" autocomplete="off">
   <header>
+    <div class="images">
+      <figure>
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" data-action="editImage" title="{{localize "LND.Portrait"}}" alt="{{actor.name}}">
+        <figcaption>{{localize "LND.Portrait"}}</figcaption>
+      </figure>
+      <figure>
+        <img class="token-img" src="{{actor.prototypeToken.texture.src}}" data-edit="prototypeToken.texture.src" data-action="editImage" title="{{localize "LND.Token"}}" alt="Token">
+        <figcaption>{{localize "LND.Token"}}</figcaption>
+      </figure>
+    </div>
     <input type="text" name="name" value="{{actor.name}}" placeholder="Nom">
     <label>{{localize "LND.Health"}}
       <input type="number" name="system.sante.value" value="{{system.sante.value}}"> /
@@ -12,11 +22,11 @@
     <div class="stat">
       <a class="stat-roll" data-stat="{{key}}">{{localize (concat "LND." key)}}</a>
       <input type="number" name="system.stats.{{key}}.value" value="{{value}}">
-      <select name="system.stats.{{key}}.rank">
+      {{!-- <select name="system.stats.{{key}}.rank">
         <option value="high" {{#if (eq rank "high")}}selected{{/if}}>{{localize "LND.High"}}</option>
         <option value="medium" {{#if (eq rank "medium")}}selected{{/if}}>{{localize "LND.Medium"}}</option>
         <option value="low" {{#if (eq rank "low")}}selected{{/if}}>{{localize "LND.Low"}}</option>
-      </select>
+      </select> --}}
       <span>+{{mod}}</span>
     </div>
     {{/each}}

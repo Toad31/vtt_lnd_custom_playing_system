@@ -1,4 +1,8 @@
 .lnd-sheet .stats { display: flex; gap: 8px; }
 .lnd-sheet .stat { display: flex; flex-direction: column; align-items: center; }
 .lnd-sheet .actions button { width: auto; }
+.lnd-sheet .images { display: flex; gap: 12px; margin-bottom: 8px; }
+.lnd-sheet .images figure { margin: 0; text-align: center; }
+.lnd-sheet .images img { width: 96px; height: 96px; object-fit: contain; border: 1px solid #888; cursor: pointer; }
+.lnd-sheet figcaption { font-size: 0.8em; }
 .lnd-sheet ol { list-style: none; padding: 0; }

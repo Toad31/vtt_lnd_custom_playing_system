@@ -7,7 +7,10 @@
   "authors": [{ "name": "Toad31" }],
   "esmodules": ["module/system.mjs"],
   "styles": ["styles/system.css"],
-  "languages": [{ "lang": "fr", "name": "Français", "path": "lang/fr.json" }],
+  "languages": [
+    { "lang": "fr", "name": "Français", "path": "lang/fr.json" },
+    { "lang": "en", "name": "English", "path": "lang/en.json" }
+  ],
   "documentTypes": {
     "Actor": { "character": {}, "npc": {} },
     "Item": { "weapon": {}, "spell": {}, "skill": {}, "object": {} }
