@@ -106,7 +106,7 @@ export class CustomActor extends Actor {
   }
 }
 
-export class CustomActorSheet extends foundry.applications.sheets.ActorSheetV2 {
+export class CustomActorSheet extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.sheets.ActorSheetV2) {
   static DEFAULT_OPTIONS = {
     classes: ["lnd", "sheet", "actor"],
     position: { width: 600, height: 700 }
@@ -152,7 +152,7 @@ export class CustomActorSheet extends foundry.applications.sheets.ActorSheetV2 {
   }
 }
 
-export class CustomItemSheet extends foundry.applications.sheets.ItemSheetV2 {
+export class CustomItemSheet extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.sheets.ItemSheetV2) {
   static DEFAULT_OPTIONS = {
     classes: ["lnd", "sheet", "item"],
     position: { width: 450, height: 400 }
