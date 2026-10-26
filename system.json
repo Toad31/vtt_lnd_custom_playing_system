@@ -1,0 +1,17 @@
+{
+  "id": "vtt-lnd-custom",
+  "title": "Système Custom D10",
+  "description": "Système de jeu customisé: d10 + modificateur de caractéristique.",
+  "version": "0.1.0",
+  "compatibility": { "minimum": "12", "verified": "13" },
+  "authors": [{ "name": "Toad31" }],
+  "esmodules": ["module/system.mjs"],
+  "styles": ["styles/system.css"],
+  "languages": [{ "lang": "fr", "name": "Français", "path": "lang/fr.json" }],
+  "documentTypes": {
+    "Actor": { "character": {}, "npc": {} },
+    "Item": { "weapon": {}, "spell": {}, "skill": {}, "object": {} }
+  },
+  "grid": { "distance": 1, "units": "m" },
+  "primaryTokenAttribute": "sante"
+}

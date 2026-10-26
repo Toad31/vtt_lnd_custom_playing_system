@@ -1,0 +1,26 @@
+<form class="lnd-sheet" autocomplete="off">
+  <header><input type="text" name="name" value="{{item.name}}"></header>
+  {{#if (eq item.type "weapon")}}
+  <div class="form-group"><label>{{localize "LND.Stat"}}</label>
+    <select name="system.stat">{{selectOptions (lookup this "statChoices") selected=system.stat localize=true}}</select></div>
+  <div class="form-group"><label>{{localize "LND.Damage"}}</label><input type="text" name="system.damage" value="{{system.damage}}"></div>
+  {{/if}}
+  {{#if (eq item.type "skill")}}
+  <div class="form-group"><label>{{localize "LND.Stat"}}</label>
+    <select name="system.stat">{{selectOptions (lookup this "statChoices") selected=system.stat localize=true}}</select></div>
+  {{/if}}
+  {{#if (eq item.type "spell")}}
+  <div class="form-group"><label>{{localize "LND.Kind"}}</label>
+    <select name="system.kind">
+      <option value="attack" {{#if (eq system.kind "attack")}}selected{{/if}}>{{localize "LND.Attack"}}</option>
+      <option value="heal" {{#if (eq system.kind "heal")}}selected{{/if}}>{{localize "LND.Heal"}}</option>
+      <option value="other" {{#if (eq system.kind "other")}}selected{{/if}}>{{localize "LND.Other"}}</option>
+    </select></div>
+  <div class="form-group"><label>{{localize "LND.Damage"}}</label><input type="text" name="system.damage" value="{{system.damage}}"></div>
+  <div class="form-group"><label>{{localize "LND.Heal"}}</label><input type="text" name="system.heal" value="{{system.heal}}"></div>
+  {{/if}}
+  {{#if (eq item.type "object")}}
+  <div class="form-group"><label>{{localize "LND.Quantity"}}</label><input type="number" name="system.quantity" value="{{system.quantity}}"></div>
+  {{/if}}
+  <textarea name="system.description">{{system.description}}</textarea>
+</form>

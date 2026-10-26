@@ -1,0 +1,11 @@
+{
+  "LND.Health": "Santé", "LND.dexterite": "Dextérité", "LND.force": "Force",
+  "LND.intelligence": "Intelligence", "LND.charisme": "Charisme", "LND.Armor": "Armure",
+  "LND.High": "Haute", "LND.Medium": "Moyenne", "LND.Low": "Faible",
+  "LND.Attack": "Attaquer", "LND.Move": "Se déplacer", "LND.Heal": "Healer",
+  "LND.Interact": "Interagir", "LND.Other": "Autre", "LND.Describe": "Action souhaitée",
+  "LND.Damage": "Dégâts", "LND.Miss": "Attaque ratée", "LND.Difficulty": "Difficulté",
+  "LND.Success": "Réussite", "LND.Failure": "Échec", "LND.HealFormula": "Dés de soin",
+  "LND.MoveMsg": "se déplace.", "LND.Spells": "Sorts", "LND.Skills": "Compétences",
+  "LND.Objects": "Objets", "LND.Stat": "Statistique", "LND.Kind": "Type", "LND.Quantity": "Quantité"
+}

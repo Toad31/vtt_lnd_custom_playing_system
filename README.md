@@ -1,2 +1,7 @@
 # vtt_lnd_custom_playing_system
 A custom game system for vtt. Used for LieNDie custom "LND plays RPG" events. 
+
+## Système Foundry VTT
+Système custom (d10 + modificateur): stats Dextérité/Force/Intelligence/Charisme, Santé, Armure = 5 + mod. de Force,
+modificateur = +1 par point au-dessus de 5. Fiches de personnage/PNJ, armes, sorts, compétences et objets.
+Installer en copiant ce dossier dans `Data/systems/vtt-lnd-custom`.
