@@ -1,13 +1,11 @@
 <form class="lnd-sheet" autocomplete="off">
   <header><input type="text" name="name" value="{{item.name}}"></header>
-  {{#if (eq item.type "object")}}
   <div class="images item-images">
     <figure>
       <img src="{{item.img}}" data-edit="img" title="{{localize "LND.ItemImage"}}" alt="{{item.name}}">
       <figcaption>{{localize "LND.ItemImage"}}</figcaption>
     </figure>
   </div>
-  {{/if}}
   {{#if (eq item.type "weapon")}}
   <div class="form-group"><label>{{localize "LND.Stat"}}</label>
     <select name="system.stat">{{selectOptions (lookup this "statChoices") selected=system.stat localize=true}}</select></div>
