@@ -1,0 +1,27 @@
+{
+  "Actor": {
+    "types": ["character", "npc"],
+    "templates": {
+      "base": {
+        "sante": { "value": 10, "max": 10 },
+        "stats": {
+          "dexterite": { "value": 5, "rank": "medium" },
+          "force": { "value": 5, "rank": "medium" },
+          "intelligence": { "value": 5, "rank": "medium" },
+          "charisme": { "value": 5, "rank": "medium" }
+        },
+        "biography": ""
+      }
+    },
+    "character": { "templates": ["base"] },
+    "npc": { "templates": ["base"] }
+  },
+  "Item": {
+    "types": ["weapon", "spell", "skill", "object"],
+    "templates": { "base": { "description": "" } },
+    "weapon": { "templates": ["base"], "stat": "force", "damage": "1d6" },
+    "spell": { "templates": ["base"], "kind": "attack", "damage": "1d6", "heal": "1d6" },
+    "skill": { "templates": ["base"], "stat": "dexterite" },
+    "object": { "templates": ["base"], "quantity": 1 }
+  }
+}

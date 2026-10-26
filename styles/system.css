@@ -1,0 +1,4 @@
+.lnd-sheet .stats { display: flex; gap: 8px; }
+.lnd-sheet .stat { display: flex; flex-direction: column; align-items: center; }
+.lnd-sheet .actions button { width: auto; }
+.lnd-sheet ol { list-style: none; padding: 0; }
