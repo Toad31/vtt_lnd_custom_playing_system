@@ -4,4 +4,6 @@ A custom game system for vtt. Used for LieNDie custom "LND plays RPG" events.
 ## Système Foundry VTT
 Système custom (d10 + modificateur): stats Dextérité/Force/Intelligence/Charisme, Santé, Armure = 5 + mod. de Force,
 modificateur = +1 par point au-dessus de 5. Fiches de personnage/PNJ, armes, sorts, compétences et objets.
+Compatible avec Foundry Virtual Tabletop 14, vérifié jusqu'au build 368.
+
 Installer en copiant ce dossier dans `Data/systems/vtt-lnd-custom`.

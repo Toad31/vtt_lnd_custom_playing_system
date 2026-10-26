@@ -2,7 +2,7 @@ const STATS = ["dexterite", "force", "intelligence", "charisme"];
 
 /** +1 par point au-dessus de 5 (arrondi au supérieur). */
 export function statModifier(value) {
-  return Math.max(0, Math.ceil((Number(value) || 0) - 5));
+  return Math.ceil((Number(value) || 0) - 5);
 }
 
 export class CustomActor extends Actor {
@@ -106,16 +106,19 @@ export class CustomActor extends Actor {
   }
 }
 
-export class CustomActorSheet extends ActorSheet {
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["lnd", "sheet", "actor"], template: "systems/vtt-lnd-custom/templates/actor/actor-sheet.hbs",
-      width: 600, height: 700
-    });
-  }
+export class CustomActorSheet extends foundry.applications.sheets.ActorSheetV2 {
+  static DEFAULT_OPTIONS = {
+    classes: ["lnd", "sheet", "actor"],
+    position: { width: 600, height: 700 }
+  };
 
-  async getData() {
-    const ctx = await super.getData();
+  static PARTS = {
+    main: { template: "systems/vtt-lnd-custom/templates/actor/actor-sheet.hbs" }
+  };
+
+  async _prepareContext(options) {
+    const ctx = await super._prepareContext(options);
+    ctx.actor = this.actor;
     ctx.system = this.actor.system;
     ctx.statList = STATS.map(k => ({ key: k, ...this.actor.system.stats[k] }));
     const by = t => this.actor.items.filter(i => i.type === t);
@@ -123,33 +126,45 @@ export class CustomActorSheet extends ActorSheet {
     return ctx;
   }
 
-  activateListeners(html) {
-    super.activateListeners(html);
+  async _onRender(context, options) {
+    await super._onRender(context, options);
     if (!this.isEditable) return;
-    const item = el => this.actor.items.get(el.closest("[data-item-id]").dataset.itemId);
-    html.find("[data-action]").click(ev => this.actor.doAction(ev.currentTarget.dataset.action));
-    html.find(".stat-roll").click(ev => this.actor.rollStat(ev.currentTarget.dataset.stat, game.i18n.localize(`LND.${ev.currentTarget.dataset.stat}`)));
-    html.find(".item-use").click(ev => {
-      const i = item(ev.currentTarget);
+    const item = element => this.actor.items.get(element.closest("[data-item-id]").dataset.itemId);
+    this.element.querySelectorAll("[data-action]").forEach(element => element.addEventListener("click", event => {
+      void this.actor.doAction(event.currentTarget.dataset.action);
+    }));
+    this.element.querySelectorAll(".stat-roll").forEach(element => element.addEventListener("click", event => {
+      const { stat } = event.currentTarget.dataset;
+      void this.actor.rollStat(stat, game.i18n.localize(`LND.${stat}`));
+    }));
+    this.element.querySelectorAll(".item-use").forEach(element => element.addEventListener("click", event => {
+      const i = item(event.currentTarget);
       if (i.type === "weapon") this.actor.attack(i);
       else if (i.type === "spell") this.actor.castSpell(i);
       else if (i.type === "skill") this.actor.useSkill(i);
-    });
-    html.find(".item-edit").click(ev => item(ev.currentTarget).sheet.render(true));
-    html.find(".item-delete").click(ev => item(ev.currentTarget).delete());
+    }));
+    this.element.querySelectorAll(".item-edit").forEach(element => element.addEventListener("click", event => {
+      item(event.currentTarget).sheet.render(true);
+    }));
+    this.element.querySelectorAll(".item-delete").forEach(element => element.addEventListener("click", event => {
+      void item(event.currentTarget).delete();
+    }));
   }
 }
 
-export class CustomItemSheet extends ItemSheet {
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["lnd", "sheet", "item"], template: "systems/vtt-lnd-custom/templates/item/item-sheet.hbs",
-      width: 450, height: 400
-    });
-  }
+export class CustomItemSheet extends foundry.applications.sheets.ItemSheetV2 {
+  static DEFAULT_OPTIONS = {
+    classes: ["lnd", "sheet", "item"],
+    position: { width: 450, height: 400 }
+  };
 
-  async getData() {
-    const ctx = await super.getData();
+  static PARTS = {
+    main: { template: "systems/vtt-lnd-custom/templates/item/item-sheet.hbs" }
+  };
+
+  async _prepareContext(options) {
+    const ctx = await super._prepareContext(options);
+    ctx.item = this.item;
     ctx.system = this.item.system;
     ctx.statChoices = Object.fromEntries(STATS.map(k => [k, `LND.${k}`]));
     return ctx;
@@ -159,10 +174,10 @@ export class CustomItemSheet extends ItemSheet {
 Hooks.once("init", () => {
   CONFIG.Actor.documentClass = CustomActor;
   CONFIG.Combat.initiative = { formula: "1d10 + @stats.dexterite.mod", decimals: 0 };
-  Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("vtt-lnd-custom", CustomActorSheet, { makeDefault: true });
-  Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("vtt-lnd-custom", CustomItemSheet, { makeDefault: true });
+  DocumentSheetConfig.unregisterSheet(foundry.documents.Actor, "core", foundry.applications.sheets.ActorSheetV2);
+  DocumentSheetConfig.registerSheet(foundry.documents.Actor, "vtt-lnd-custom", CustomActorSheet, { makeDefault: true });
+  DocumentSheetConfig.unregisterSheet(foundry.documents.Item, "core", foundry.applications.sheets.ItemSheetV2);
+  DocumentSheetConfig.registerSheet(foundry.documents.Item, "vtt-lnd-custom", CustomItemSheet, { makeDefault: true });
   Handlebars.registerHelper("eq", (a, b) => a === b);
   Handlebars.registerHelper("concat", (...a) => a.slice(0, -1).join(""));
 });
