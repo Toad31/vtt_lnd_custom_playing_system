@@ -5,23 +5,36 @@ export function statModifier(value) {
   return Math.ceil((Number(value) || 0) - 5);
 }
 
+function reportSaveError(error) {
+  console.error("Failed to save sheet changes.", error);
+  ui.notifications.error(game.i18n.localize("LND.SaveError"));
+}
+
 function bindFormPersistence(document, root) {
   const form = root.querySelector("form.lnd-sheet");
   if (!form) return;
 
   const save = () => document.update(new foundry.applications.ux.FormDataExtended(form).object);
-  const reportError = error => {
-    console.error("Failed to save sheet changes.", error);
-    ui.notifications.error(game.i18n.localize("LND.SaveError"));
-  };
 
   form.addEventListener("change", () => {
-    void save().catch(reportError);
+    void save().catch(reportSaveError);
   });
   form.addEventListener("submit", event => {
     event.preventDefault();
-    void save().catch(reportError);
+    void save().catch(reportSaveError);
   });
+}
+
+function editImage(document, image) {
+  const field = image.dataset.edit;
+  const picker = new foundry.applications.apps.FilePicker({
+    type: "image",
+    current: foundry.utils.getProperty(document, field),
+    callback: path => {
+      void document.update({ [field]: path }).catch(reportSaveError);
+    }
+  });
+  picker.render({ force: true });
 }
 
 export class CustomActor extends Actor {
@@ -149,6 +162,10 @@ export class CustomActorSheet extends foundry.applications.api.HandlebarsApplica
     await super._onRender(context, options);
     if (!this.isEditable) return;
     bindFormPersistence(this.actor, this.element);
+    this.element.querySelectorAll(".images img[data-edit]").forEach(image => image.addEventListener("click", event => {
+      event.preventDefault();
+      editImage(this.actor, event.currentTarget);
+    }));
     const item = element => this.actor.items.get(element.closest("[data-item-id]").dataset.itemId);
     this.element.querySelectorAll(".actions [data-action]").forEach(element => element.addEventListener("click", event => {
       void this.actor.doAction(event.currentTarget.dataset.action);
