@@ -5,6 +5,25 @@ export function statModifier(value) {
   return Math.ceil((Number(value) || 0) - 5);
 }
 
+function bindFormPersistence(document, root) {
+  const form = root.querySelector("form.lnd-sheet");
+  if (!form) return;
+
+  const save = () => document.update(new foundry.applications.ux.FormDataExtended(form).object);
+  const reportError = error => {
+    console.error("Failed to save sheet changes.", error);
+    ui.notifications.error(game.i18n.localize("LND.SaveError"));
+  };
+
+  form.addEventListener("change", () => {
+    void save().catch(reportError);
+  });
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+    void save().catch(reportError);
+  });
+}
+
 export class CustomActor extends Actor {
   prepareDerivedData() {
     const s = this.system;
@@ -129,6 +148,7 @@ export class CustomActorSheet extends foundry.applications.api.HandlebarsApplica
   async _onRender(context, options) {
     await super._onRender(context, options);
     if (!this.isEditable) return;
+    bindFormPersistence(this.actor, this.element);
     const item = element => this.actor.items.get(element.closest("[data-item-id]").dataset.itemId);
     this.element.querySelectorAll("[data-action]").forEach(element => element.addEventListener("click", event => {
       void this.actor.doAction(event.currentTarget.dataset.action);
@@ -168,6 +188,12 @@ export class CustomItemSheet extends foundry.applications.api.HandlebarsApplicat
     ctx.system = this.item.system;
     ctx.statChoices = Object.fromEntries(STATS.map(k => [k, `LND.${k}`]));
     return ctx;
+  }
+
+  async _onRender(context, options) {
+    await super._onRender(context, options);
+    if (!this.isEditable) return;
+    bindFormPersistence(this.item, this.element);
   }
 }
 
