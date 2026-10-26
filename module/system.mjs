@@ -150,7 +150,7 @@ export class CustomActorSheet extends foundry.applications.api.HandlebarsApplica
     if (!this.isEditable) return;
     bindFormPersistence(this.actor, this.element);
     const item = element => this.actor.items.get(element.closest("[data-item-id]").dataset.itemId);
-    this.element.querySelectorAll("[data-action]").forEach(element => element.addEventListener("click", event => {
+    this.element.querySelectorAll(".actions [data-action]").forEach(element => element.addEventListener("click", event => {
       void this.actor.doAction(event.currentTarget.dataset.action);
     }));
     this.element.querySelectorAll(".stat-roll").forEach(element => element.addEventListener("click", event => {

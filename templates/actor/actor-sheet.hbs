@@ -27,7 +27,7 @@
         <option value="medium" {{#if (eq rank "medium")}}selected{{/if}}>{{localize "LND.Medium"}}</option>
         <option value="low" {{#if (eq rank "low")}}selected{{/if}}>{{localize "LND.Low"}}</option>
       </select> --}}
-      <span>+{{mod}}</span>
+      <span>{{#if mod}}{{#if (gt mod 0)}}+{{/if}}{{mod}}{{/if}}</span>
     </div>
     {{/each}}
   </section>
